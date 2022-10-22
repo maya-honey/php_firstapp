@@ -21,6 +21,7 @@
             <li><a href="/number/1">Catch Param | Number</a></li>
             <li><a href="/namae">Name Route</a></li>
             <li><a href="/namae_2/7">Name Route 2</a></li>
+            <li><a href="/middleware">Middleware</a></li>
         </ul>
     </body>
 </html>

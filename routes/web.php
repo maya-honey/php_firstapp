@@ -72,3 +72,20 @@ Route::get('namae_2/{id}', function ($id){
     $url = route('profile_2', ['id' => $id, 'add_param' => "add_params"]);
     return "<p>${url}</p>";
 });
+
+//ミドルウェア
+//kernel.phpの$routeMidlewareにミドルウェアを登録
+//ルートにミドルウェアを割り当てる
+Route::get('/middleware', function(){
+    return "middoleware";
+})->middleware('ensuretokenisvalid');
+
+//ミドルウェアをグループ内全てのルートに割り当てる
+Route::middleware(['first', 'second'])->group(function(){
+    Route::get('/', function(){
+        //1番目と2番目のミドルウェアが適用される
+    });
+    Route::get('/user/example', function(){
+        //1番目と2番目のミドルウェアが適用される
+    });
+});
