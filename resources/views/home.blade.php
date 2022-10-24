@@ -14,6 +14,7 @@
     </head>
     <body>
         <h1>Home</h1>
+        <h2>ルーティング</h2>
         <ul>
             <li><a href="/view">View</a></li>
             <li><a href="/redirect">Redirect</a></li>
@@ -21,7 +22,12 @@
             <li><a href="/number/1">Catch Param | Number</a></li>
             <li><a href="/namae">Name Route</a></li>
             <li><a href="/namae_2/7">Name Route 2</a></li>
-            <li><a href="/middleware">Middleware</a></li>
+            <li><a href="/middleware">Middleware Route</a></li>
+            <li><a href="/middoleware/one">Middleware Group1</a></li>
+            <li><a href="/middoleware/two">Middleware Group2</a></li>
+            <li><a href="/orders/1">Controller Route</a></li>
+            <li><a href="/subdomain">Subdomain</a></li>
+            <li><a href="/prefix/users">Prefix</a></li>
         </ul>
     </body>
 </html>

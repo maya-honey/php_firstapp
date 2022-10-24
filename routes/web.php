@@ -73,19 +73,65 @@ Route::get('namae_2/{id}', function ($id){
     return "<p>${url}</p>";
 });
 
-//ミドルウェア
+
+//ミドルウェア（ルートグループ）
 //kernel.phpの$routeMidlewareにミドルウェアを登録
+//今回はensuretokenisvalidというキーを登録
 //ルートにミドルウェアを割り当てる
 Route::get('/middleware', function(){
     return "middoleware";
 })->middleware('ensuretokenisvalid');
-
 //ミドルウェアをグループ内全てのルートに割り当てる
-Route::middleware(['first', 'second'])->group(function(){
-    Route::get('/', function(){
-        //1番目と2番目のミドルウェアが適用される
+Route::middleware(['middleware'])->group(function(){
+    Route::get('/middoleware/one', function(){
+        return 'ミドルウェア適用 /middoleware/one';
     });
-    Route::get('/user/example', function(){
-        //1番目と2番目のミドルウェアが適用される
+    Route::get('/middoleware/two', function(){
+        return 'ミドルウェア適用 /middoleware/two';
     });
 });
+
+
+//コントローラ（ルートグループ）
+//シンプルに単体のルートに対してコントローラメソッドのルートを
+//定義する方法は以下の通り
+//use App\Http\Controllers\OrderController;
+//Route::get('/user/{id}', [UserController::class, 'show']);
+
+//グループが全て同じコントローラを利用する場合、
+//controllerメソッドを使用すると共通のコントローラを定義できる
+//これにより、ルート定義時にそのルートが呼び
+//出すコントローラメソッドを指定するだけで良くなる
+use App\Http\Controllers\OrderController;
+Route::controller(OrderController::class)->group(function (){
+    //showとstoreを指定
+    Route::get('/orders/{id}', 'show');
+    //Route::post('/orders', 'store');
+});
+
+
+//サブドメインルーティング（ルートグループ）
+//サブドメインルーティングも処理できる
+//Route::domain('{account}.example.com')->group(function() {
+    //Route::get('user/{id}', function ($account, $id) {
+        //
+    //});
+//});
+
+
+//ルートプレフィックス（ルートグループ）
+//prefixメソッドを利用すれば、グループ内の各ルートに特定の
+//URIプレフィックスをつけることができる
+//下の例では、/admin/usersのURLに一致
+Route::prefix('prefix')->group(function() {
+    Route::get('/users', function(){
+        return "prefix/users";
+    });
+});
+//名前付きルートにプレフィックスをつける
+//Route::name('admin.')->group(function() {
+    //Route::get('/users', function() {
+        //ルートにadmin.usersが名付けられる
+    //})->name('users');
+//});
+
