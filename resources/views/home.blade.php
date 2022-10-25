@@ -26,8 +26,12 @@
             <li><a href="/middoleware/one">Middleware Group1</a></li>
             <li><a href="/middoleware/two">Middleware Group2</a></li>
             <li><a href="/orders/1">Controller Route</a></li>
-            <li><a href="/subdomain">Subdomain</a></li>
-            <li><a href="/prefix/users">Prefix</a></li>
+            <li><a href="/subdomain">Subdomain Route</a></li>
+            <li><a href="/prefix/users">Route Prefix</a></li>
+        </ul>
+        <h2>コントローラ</h2>
+        <ul>
+            <li><a href="/con_controller/1">基本のコントローラ</a></li>
         </ul>
     </body>
 </html>

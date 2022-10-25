@@ -129,9 +129,21 @@ Route::prefix('prefix')->group(function() {
     });
 });
 //名前付きルートにプレフィックスをつける
+
 //Route::name('admin.')->group(function() {
     //Route::get('/users', function() {
         //ルートにadmin.usersが名付けられる
     //})->name('users');
 //});
 
+
+
+
+//コントローラ
+use App\Http\Controllers\Con_Controller;
+
+//Con_Controllerクラスのshowクラスを使用
+Route::get(
+    '/con_controller/{id}',
+    [Con_Controller::class, 'show']
+);
