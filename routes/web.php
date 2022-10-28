@@ -141,9 +141,50 @@ Route::prefix('prefix')->group(function() {
 
 //コントローラ
 use App\Http\Controllers\Con_Controller;
-
+//基本のコントローラ
 //Con_Controllerクラスのshowクラスを使用
 Route::get(
     '/con_controller/{id}',
     [Con_Controller::class, 'show']
+);
+
+//シングルアクションコントローラ
+//__invokeメソッドは、スクリプトがオブジェクトを
+//関数のようにコールしようとした際にコールされる
+//Laravelでは、__invokeメソッドを利用することで
+//ルーターにコントローラー名（クラス名）を渡すだけで
+//ルートを登録できる（アクションを指定しなくていい）
+use App\Http\Controllers\Invoke_Controller;
+Route::get(
+    '/invoke',
+    [Invoke_Controller::class]
+);
+//良く分からない
+
+//コントローラミドルウェア
+//コントローラのルートに対してミドルウェアを指定する
+Route::get('/controller_middleware_route', [Con_Controller::class, 'show'])
+->middleware('EnsureTokenIsValid');
+
+//コントローラのコンストラクタでミドルウェアを使用
+use App\Http\Controllers\Middleware_Construct_Controller;
+Route::get(
+    '/controller_middleware_constructor',
+    [Middleware_Construct_Controller::class,'Middleware_con']);
+
+//リソースコントローラ
+//ルートでresourceをたった一行宣言することで、
+//リソースに対するさまざまなアクションを処理するための複数のルートを
+//一度に定義できる
+use App\Http\Controllers\PhotoController;
+Route::resource('/resource_controller', PhotoController::class);
+
+//ビューコンポーサー
+//複数のルートやコントローラで同じビューを返し、
+//常に特定のデータが必要な場合に役立つ
+Route::get(
+    '/testcomposer',
+    function(){
+        return view('testcomposer');
+    }
 );

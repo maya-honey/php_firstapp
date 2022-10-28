@@ -32,6 +32,14 @@
         <h2>コントローラ</h2>
         <ul>
             <li><a href="/con_controller/1">基本のコントローラ</a></li>
+            <li><a href="/invoke">シングルアクションコントローラ（__invoke）</a></li>
+            <li><a href="/controller_middleware_route">コントローラミドルウェア（ルートに指定）</a></li>
+            <li><a href="/controller_middleware_constructor">コントローラミドルウェア（コンストラクターに指定）</a></li>
+            <li><a href="/resource_controller">リソースコントローラ</a></li>
         </ul>
-    </body>
+        <h2>ビュー</h2>
+            <ul>
+                <li><a href="/testcomposer">ビューコンポーサー</a></li>
+            </ul>
+        </body>
 </html>
